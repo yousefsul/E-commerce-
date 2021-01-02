@@ -20,7 +20,7 @@ const RegisterComplete = ({history}) => {
             return
         }
 
-        if(password != passwordConfirmation){
+        if(password !== passwordConfirmation){
             toast.error("Please make sure your passwords match")
             return
         }
