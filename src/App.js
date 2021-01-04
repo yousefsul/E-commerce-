@@ -1,6 +1,6 @@
 import React ,{useEffect} from 'react';
 import {Switch , Route} from 'react-router-dom';
-import {toast , ToastContainer} from 'react-toastify';
+import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 

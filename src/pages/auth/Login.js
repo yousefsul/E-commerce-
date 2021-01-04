@@ -1,11 +1,20 @@
 import React , {useState , useEffect} from 'react';
 import {auth, GoogleAuthProvider} from '../../firebase';
 import {toast} from 'react-toastify';
-import Checkbox from 'antd/lib/checkbox/Checkbox';
 import {Button} from 'antd';
 import { GoogleOutlined, MailOutlined } from '@ant-design/icons';
 import {useDispatch ,useSelector} from 'react-redux';
 import { Link } from "react-router-dom";
+import axios from 'axios';
+
+
+const createOrUpdateUser = async (authtoken) =>{
+    return await axios.put('http://localhost:8000/api' , {} , {
+        headers: {
+            authtoken: authtoken
+        }
+    })
+}
 
 const Login = ({history}) => {
     const [email,setEmail]= useState("")
@@ -29,6 +38,10 @@ const Login = ({history}) => {
             const {user} = result
             const idTokenResult = await user.getIdTokenResult()
             
+            createOrUpdateUser(idTokenResult.token)
+            .then((res) => console.log("hello"))
+            .catch()
+
             dispatch({
                 type: "LOGGED_IN_USER",
                 payload: {
